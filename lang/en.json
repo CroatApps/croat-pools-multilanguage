@@ -1,0 +1,10 @@
+{ 
+  "htmllang" : "en-GB",
+  "title" : "CROAT.CAT Mining pools", 
+  "statsupdated" : "Stats updated", 
+  "height" : "Height",
+  "hashrate" : "Hash Rate",
+  "miners" : "Miners",
+  "totalfee" : "Fee",
+  "lastblockfound" : "Last block found"
+}

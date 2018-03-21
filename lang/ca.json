@@ -1,0 +1,10 @@
+{ 
+  "htmllang" : "ca",
+  "title" : "POOLS de mineria CROAT.CAT", 
+  "statsupdated" : "Estadístiques actualitzades", 
+  "height" : "Altura",
+  "hashrate" : "Taxa (Hash)",
+  "miners" : "Miners",
+  "totalfee" : "Tarifa",
+  "lastblockfound" : "Data últim bloc"
+}

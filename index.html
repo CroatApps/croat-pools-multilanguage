@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+      <meta name="robots" content="noindex, nofollow">
+      <title>POOLS de mineria CROAT.CAT</title>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.0/jquery.timeago.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+      <link href="//fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+      <script src="config.js"></script> 
+      <style>
+         #coinName{
+           text-transform: capitalize;
+         }
+         body {
+           padding-top: 65px;
+           padding-bottom: 80px;
+           overflow-y: scroll;
+         }
+         .container{
+           font-size: 1.1em;
+         } 
+         #stats_updated{
+           opacity: 0;
+           float: right;
+           margin-left: 30px;
+           color: #e8e8e8;
+           line-height: 47px;
+           font-size: 0.9em;
+         } 
+         #network_rows > tr > td{
+           vertical-align: middle;
+           font-family: 'Inconsolata', monospace;
+           font-size: 0.95em;
+         }
+         .minHash {
+           color: #b3cccc; // gris
+         }
+         .medHash {
+           color: #99ff99; // verd
+         }
+         .bigHash {
+           color: #ff8533; // taronja
+         }
+         .maxHash {
+           color: #ff1a1a; // vermell
+         }	
+      </style>
+      <link href="custom.css" rel="stylesheet">
+      <script src="lang.js"></script>
+   </head>
+   <body>
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand active" href="/"><span id="coinName"></span> Mining Pools</a>
+            </div>
+            <div class="collapse navbar-collapse">
+               <ul class="nav navbar-nav">
+                  <li> 
+                     <a class="hot-link"  href="?lang=ca" hreflang="ca" lang="ca"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAIAAAD5gJpuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATBJREFUeNpUkU1LA0EMhpNViqWtVYrFj4OnulCoFNSbF3+Gtn9UvBSxoHgR9eRBD1Xbgyu0Ckt3MhMzMzvtGsLLSxieTBKkhxMIwczGmKJqrcUsVGJVqtQ5de8NsGbQwMTWKGaFTABqhb1X6uYVJ/295v5Z3kJIWgFZZXKpJDOmTAyUK/O7F0zvu3TYguW3BK883mUmaqxmCLXZYITj3m5j7QgKgTTP2Rac5U2kQ6U6e3zD39tO6aAB/4PNEs/G4qUC0fr7cIKfFzubpXbxdUSp6xDYwWOt/vM0wumwzd1mYbMWbMIAxjexY6gI6slVgh/n21vlOAzsYY7qNpNXSIHRXN1In8f4fR1Hx3FgEwek+72si4Rt78PaACWXU/watPyN/SH9dRfqT+69GHn5J8AAeJhkjAZrdt8AAAAASUVORK5CYII=" title="Català" alt="Català" style="margin-right:4px;"></a>
+                  </li>
+                  <li>
+                     <a class="hot-link"  href="?lang=es"  hreflang="es-ES" lang="es-ES"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAIAAAD5gJpuAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFnSURBVHjaYvzPgAD/UNlYEUAAmuTYAAAQhAEYqF/zFbe50RZ1cMmS9TLi0pJLRjZohAMTGFUN9HdnHgEE1sDw//+Tp0ClINW/f0NIKPoFJH/9//ULyGaUlQXaABBALAx/Gf4zAt31F4i+ffj3/cN/XrFfzOx//v///f//LzACM/79ZmD8/e8TA0AAMYHdDVT958vXP38nMDB0s3x94/Tj5y+YahhiAKLfQKUAAcQEdtJfoDHMF2L+vPzDmFXLelf551tGFOOhev4A/QgQQExgHwAd8IdFT/Wz6j+GhlpmXSOW/2z///8Eq/sJ18Dw/zdQA0AAMQExxJjjdy9x2/76EfLz4MXdP/i+wsyGkkA3Aw3984cBIIAYfzIwMKel/bt3jwEaLNAwgZIQxp/fDH/+MqqovL14ESCAWICeZvr9h0FSEhSgwBgAygFDEMT+wwAhgQgc4kAEVAwQQIxfUSMSTxxDAECAAQAJWke8v4u1tAAAAABJRU5ErkJggg==" title="Español" alt="Español" style="margin-right:4px;"></a>
+                  </li>
+                  <li>
+                     <a class="hot-link"  href="?lang=en" hreflang="en-GB" lang="en-GB"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAIAAAD5gJpuAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAflJREFUeNpinDRzn5qN3uFDt16+YWBg+Pv339+KGN0rbVP+//2rW5tf0Hfy/2+mr99+yKpyOl3Ydt8njEWIn8f9zj639NC7j78eP//8739GVUUhNUNuhl8//ysKeZrJ/v7z10Zb2PTQTIY1XZO2Xmfad+f7XgkXxuUrVB6cjPVXef78JyMjA8PFuwyX7gAZj97+T2e9o3d4BWNp84K1NzubTjAB3fH0+fv6N3qP/ir9bW6ozNQCijB8/8zw/TuQ7r4/ndvN5mZgkpPXiis3Pv34+ZPh5t23//79Rwehof/9/NDEgMrOXHvJcrllgpoRN8PFOwy/fzP8+gUlgZI/f/5xcPj/69e/37//AUX+/mXRkN555gsOG2xt/5hZQMwF4r9///75++f3nz8nr75gSms82jfvQnT6zqvXPjC8e/srJQHo9P9fvwNtAHmG4f8zZ6dDc3bIyM2LTNlsbtfM9OPHH3FhtqUz3eXX9H+cOy9ZMB2o6t/Pn0DHMPz/b+2wXGTvPlPGFxdcD+mZyjP8+8MUE6sa7a/xo6Pykn1s4zdzIZ6///8zMGpKM2pKAB0jqy4UE7/msKat6Jw5mafrsxNtWZ6/fjvNLW29qv25pQd///n+5+/fxDDVbcc//P/zx/36m5Ub9zL8+7t66yEROcHK7q5bldMBAgwADcRBCuVLfoEAAAAASUVORK5CYII=" title="English" alt="English" style="margin-right:4px;"></a>
+                  </li>
+               </ul>
+               <div id="stats_updated"><font tkey="statsupdated"></font>&nbsp;&nbsp;<i class="fa fa-bolt"></i></div>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div id="page">
+            <div class="table-responsive">
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                        <th><span id="network-symbol"></span> POOLS</th>
+                        <th><i class="fa fa-bars"></i> <font tkey="height"></font></th>
+                        <th><i class="fa fa-tachometer"></i> <font tkey="hashrate"></font></th>
+                        <th><i class="fa fa-group"></i> <font tkey="miners"></font></th>
+                        <th><i class="fa fa-money"></i> <font tkey="totalfee"></font></th>
+                        <th><i class="fa fa-clock-o"></i> <font tkey="lastblockfound"></font></th>
+                     </tr>
+                  </thead>
+                  <tbody id="network_rows">
+                  </tbody>
+                  <tfoot>
+                     <tr>
+                        <th>TOTALS</th>
+                        <th id="networkHeight"></th>
+                        <th id="total_hashrate"></th>
+                        <th id="total_miners"></th>
+                        <th></th>
+                        <th></th>
+                     </tr>
+                  </tfoot>
+               </table>
+            </div>
+         </div>
+      </div>
+      <script>
+
+         function updateText(elementId, text){
+             var el = document.getElementById(elementId);
+             if (el.textContent !== text){
+                 el.textContent = text;
+             }
+             return el;
+         } 
+         
+         function getReadableHashRateString(hashrate){
+             var i = 0;
+             var byteUnits = [' H', ' KH', ' MH', ' GH', ' TH', ' PH' ];
+             while (hashrate > 1000){
+                 hashrate = hashrate / 1000;
+                 i++;
+             }
+             return hashrate.toFixed(2) + byteUnits[i];
+         } 
+         
+         function pulseLiveUpdate(){
+             var stats_update = document.getElementById('stats_updated');
+             stats_update.style.transition = 'opacity 100ms ease-out';
+             stats_update.style.opacity = 1;
+             setTimeout(function(){
+                 stats_update.style.transition = 'opacity 7000ms linear';
+                 stats_update.style.opacity = 0; 
+             }, 1000);
+         } 
+         
+         setInterval(function() {
+           updatePools();
+           pulseLiveUpdate();
+         }, 7000);
+            
+         const NETWORK_STAT_MAP = new Map(networkStat[coin.toLowerCase()]);
+         NETWORK_STAT_MAP.forEach((url, host, map) => {
+             $.getJSON(url + '/stats', (data, textStatus, jqXHR) => {
+                 $('#network_rows').append('<tr>' +
+                     '<td id=host-'+host+'><a target=blank href=http://'+ host +'>'+ host +'</a></td>' +
+                     '<td id=height-'+host+'>'+data.network.height+'</td>' +
+                     '<td id=hashrate-'+host+'>'+getReadableHashRateString(data.pool.hashrate)+'/s</td>' +
+                     '<td id=miners-'+host+'>'+data.pool.miners+'</td>' +
+                     '<td id=totalFee-'+host+'>'+calculateTotalFee(data)+'%</td>' +
+                     '<td id=lastBlockFound-'+host+'>'+new Date(parseInt(data.pool.lastBlockFound)).toLocaleString()+'</td>' +
+                 '</tr>');
+             });
+         });
+         
+         function calculateTotalFee(config) {
+             let totalFee = config.config.fee;
+             for (let property in config.config.donation) {
+                 if (config.config.donation.hasOwnProperty(property)) {
+                     totalFee += config.config.donation[property];
+                 }
+             } 
+             return totalFee;
+         }
+           
+         $(function(){   
+             updateText('coinName', coin.toUpperCase());
+             updateText('network-symbol', coin.toUpperCase());
+             $("head").append("<link rel='stylesheet' href=" + themeCss + ">");
+         });
+         
+         var dataexplorer;
+         var height = 0;
+         
+         function updatePools(){ 
+         
+           var total_hashrate = 0;
+           var total_miners = 0; 
+           
+           fetch(explorer + "/getinfo", {
+             method: 'get'
+            })
+            .then(dataexplorer => {
+            return dataexplorer.json()
+            })
+            .then((response) => {
+            height = response.height;
+            updateText('networkHeight', response.height.toString()); 
+            })
+           
+           const NETWORK_STAT_MAP = new Map(networkStat[coin.toLowerCase()]);
+         
+             NETWORK_STAT_MAP.forEach((url, host, map) => {
+                 $.getJSON(url + '/stats', (data, textStatus, jqXHR) => {
+                     var diferencia = 0; 
+                     if (height > 1) { 
+                        diferencia = data.network.height-height;
+                        }
+                                  
+                     updateText('height-'+host, data.network.height+' ('+(diferencia)+')');
+                     updateText('hashrate-'+ host, formatHashRate(data.pool.hashrate,host));
+                     updateText('miners-'+host, data.pool.miners);
+                     updateText('totalFee-'+host, calculateTotalFee(data)+'%');
+                     updateText('lastBlockFound-'+host, new Date(parseInt(data.pool.lastBlockFound)).toLocaleString());
+         
+                     total_hashrate = total_hashrate+data.pool.hashrate;
+                     total_miners = total_miners+data.pool.miners;
+                     updateText('total_hashrate', getReadableHashRateString(total_hashrate)+'/s');
+                     updateText('total_miners', total_miners);	
+         
+                 });
+             });
+         }
+          
+         function formatHashRate(hashrate,host) {
+           if(!hashrate || hashrate < 1000){	
+             document.getElementById("hashrate-"+host).className = 'minHash';
+             return ' ' + getReadableHashRateString(hashrate) + '/s';
+           }else if(hashrate > 1000 && hashrate < 50000){
+             document.getElementById("hashrate-"+host).className = 'medHash';
+             return ' ' + getReadableHashRateString(hashrate) +	'/s';
+           }else if(hashrate > 50000 && hashrate < 500001){
+             document.getElementById("hashrate-"+host).className = 'bigHash';		
+             return ' ' + getReadableHashRateString(hashrate) + '/s';
+           }else if(hashrate > 500000){
+             document.getElementById("hashrate-"+host).className = 'maxHash';	
+             return ' ' + getReadableHashRateString(hashrate) + '/s';
+           }else{
+             document.getElementById("hashrate-"+host).className = 'maxHash';	
+             return ' ' + getReadableHashRateString(hashrate) + '/s';
+           }
+         }
+      </script>
+   </body>
+</html>
