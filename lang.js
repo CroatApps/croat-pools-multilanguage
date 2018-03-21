@@ -4,6 +4,8 @@ var langJS = null;
 
 var translate = function (jsdata)
 {	
+	document.title = jsdata.title;
+	
 	$("[tkey]").each (function (index)
 	{
 		var strTr = jsdata [$(this).attr ('tkey')];
