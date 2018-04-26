@@ -6,7 +6,7 @@ var networkStat = {
       ["croat.pool.cat", "https://croat.pool.cat:8119"], 
       ["pool.croat.cat", "http://178.22.66.126:8117"], 
       ["croat.globalpool.cc", "http://111.231.72.116:8103"],  
-      ["pool.croatpirineus.cat", "https://croat.netips.net:8118"],  
+      ["pool.croatpirineus.cat", "https://pool.croatpirineus.cat:8119"],  
       ["croat.communitypool.org", "http://165.227.148.241:8117"],  
       ["bcncroat.fastpool.eu", "http://46.183.117.50:8117"],  
       ["croatpool.com", "https://croatpool.com:8119"],  
